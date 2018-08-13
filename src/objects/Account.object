@@ -13,4 +13,30 @@ BEGINS(Name, &apos;INACTIVE&apos;)
         <errorDisplayField>Name</errorDisplayField>
         <errorMessage>&apos;Inactive&apos; or &quot;INACTIVE&quot; is not a valid account name.</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>Approved_Direct_Partner</fullName>
+        <active>true</active>
+        <description>Restrict users access on Approved Direct Partner field</description>
+        <errorConditionFormula>AND(
+
+ISCHANGED(Approved_Direct_Partner__c ),
+
+$User.ProfileId &lt;&gt; &apos;00e20000000wYbb&apos; /*Custom: System Administrator*/, 
+$User.ProfileId &lt;&gt; &apos;00e20000000lcyu&apos; /*Custom: CRM Development User*/,
+$User.ProfileId &lt;&gt; &apos;00e20000000wdHl&apos; /*API Only User*/, 
+$User.ProfileId &lt;&gt; &apos;00e20000000ldE5&apos; /*API Only User - Outbound Messaging Disabled */, 
+$User.ProfileId &lt;&gt; &apos;00e20000000mGO1&apos; /*API Only User - Read Only*/, 
+$User.ProfileId &lt;&gt; &apos;00e37000000hTqC&apos; /*API Only User - ReadOnly Mgr User */, 
+$User.ProfileId &lt;&gt; &apos;00e20000001A2E7&apos; /*API Only: Arvato Integration */, 
+$User.ProfileId &lt;&gt; &apos;00e20000001Ao6c&apos; /*API Only: Integrous Interface*/, 
+$User.ProfileId &lt;&gt; &apos;00e20000001A2Jb&apos; /*API Only: JIRA Integration */, 
+$User.ProfileId &lt;&gt; &apos;00e20000001UdSK&apos; /*API Only: Marketo Interface */, 
+
+$User.ProfileId &lt;&gt; &apos;00e20000000mXbx&apos; /*Custom: Channel Enablement*/,
+ $User.Id &lt;&gt; &apos;00520000003cPEk&apos; /*Sharon McCandlis */
+
+)</errorConditionFormula>
+        <errorDisplayField>Approved_Direct_Partner__c</errorDisplayField>
+        <errorMessage>You don&apos;t have access to change Approved Direct Partner field, please conact Partner@Forcepoint.com for assistance.</errorMessage>
+    </validationRules>
 </CustomObject>
