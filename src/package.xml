@@ -2,6 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
 		<members>Account.Account_Naming_Rule</members>
+		<members>Account.Approved_Direct_Partner</members>
 		<name>ValidationRule</name>
 	</types>
     <version>38.0</version>
